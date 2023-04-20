@@ -68,7 +68,7 @@ pipeline {
         stage("Upload container images") {
             steps {
                 sh '''
-                    quay.ocp4.redhat.poc:8443/quayadmin/jboss-spring
+                    podman push quay.ocp4.redhat.poc:8443/quayadmin/jboss-spring
                 '''
             }
          }
