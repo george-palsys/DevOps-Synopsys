@@ -31,18 +31,9 @@ pipeline {
           }
         }
 
-
-
-
-
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-       }
         stage("Publish to Nexus Repository Manager") {
             steps {
-               nexusArtifactUploader artifacts: [[artifactId: 'spring-petclinic', classifier: '', file: './spring-petclinic/target/spring-petclinic-3.0.0-SNAPSHOT.war', type: 'war']], credentialsId: 'nexus-uploader', groupId: 'spring-petclinic', nexusUrl: '10.107.85.168:8081/repository/spring-petclinic-artifact/', nexusVersion: 'nexus3', protocol: 'http', repository: 'spring-petclinic-artifact', version: '3.0.0-SNAPSHOT'
+             nexusArtifactUploader credentialsId: 'nexus-uploader', groupId: 'spring-petclinic', nexusUrl: '10.107.85.168:8081/repository/spring-petclinic-artifact/', nexusVersion: 'nexus3', protocol: 'http', repository: 'spring-petclinic-artifact', version: '3.0.0-SNAPSHOT'
            }
 	}
 
