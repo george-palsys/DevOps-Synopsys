@@ -9,7 +9,7 @@ pipeline {
                     git checkout code
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-configure --java
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-build --dir /workspace/workspace/DevSecOps-Synopsys mvn clean package -Dcheckstyle.skip
-                    /opt/cov-analysis-linux64-2023.3.0/bin/cov-analyze --dir /workspace/workspace/DevSecOps-Synopsys/cov-analyze-workspace
+                    /opt/cov-analysis-linux64-2023.3.0/bin/cov-analyze --dir /workspace/workspace/DevSecOps-Synopsy
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-manage-im --host 10.107.85.178 --mode streams --add --set name:DevOps-Synopsys -user $username -password $password || true
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-manage-im --host 10.107.85.178 --mode projects --add --set name:spring-petclinic --insert stream:DevOps-Synopsys  -user $username -password $password || true
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-commit-defects --host 10.107.85.178 --stream DevSecOps --dir /workspace/workspace/DevSecOps-demo/CovWorkSpace --user $username --password $password
