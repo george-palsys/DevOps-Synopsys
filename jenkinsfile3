@@ -7,12 +7,12 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'coverity', passwordVariable: 'password', usernameVariable: 'username')])             {
                sh '''
                     export PATH=$PATH:/opt/cov-analysis-linux-2023.3.0/bin
-                    cov-configure --java
-                    cov-build --dir /workspace/workspace/DevOps-Synopsys/spring-petclinic mvn clean package
-                    cov-analyze --dir /workspace//workspace/DevOps-Synopsys/cov-analyze-workspace
-                    cov-manage-im --host 10.107.85.178 --mode streams --add --set name:DevOps-Synopsys -user $username -password $password || true
-                    cov-manage-im --host 10.107.85.178 --mode projects --add --set name:spring-petclinic --insert stream:DevOps-Synopsys  -user $username -password $password || true
-                    cov-commit-defects --host 10.107.85.178 --stream DevSecOps --dir /workspace/workspace/DevSecOps-demo/CovWorkSpace --user $username --password $password
+                    /opt/cov-analysis-linux-2023.3.0/bin/cov-configure --java
+                    /opt/cov-analysis-linux-2023.3.0/bin/cov-build --dir /workspace/workspace/DevOps-Synopsys/spring-petclinic mvn clean package
+                    /opt/cov-analysis-linux-2023.3.0/bin/cov-analyze --dir /workspace//workspace/DevOps-Synopsys/cov-analyze-workspace
+                    /opt/cov-analysis-linux-2023.3.0/bin/cov-manage-im --host 10.107.85.178 --mode streams --add --set name:DevOps-Synopsys -user $username -password $password || true
+                    /opt/cov-analysis-linux-2023.3.0/bin/cov-manage-im --host 10.107.85.178 --mode projects --add --set name:spring-petclinic --insert stream:DevOps-Synopsys  -user $username -password $password || true
+                    /opt/cov-analysis-linux-2023.3.0/bin/cov-commit-defects --host 10.107.85.178 --stream DevSecOps --dir /workspace/workspace/DevSecOps-demo/CovWorkSpace --user $username --password $password
                 '''
               }
             }
