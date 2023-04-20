@@ -18,6 +18,21 @@ pipeline {
             }
           }
         }
+        stage ('BlackDuck Analysis') {
+            steps {
+                dir("/workspace/workspace/DevSecOps-Synopsys"){
+                withCredentials([string(credentialsId: 'BlackDuck-token', variable: 'SECRET')]) {
+                sh '''
+                    synopsys-detect --detect.project.name=spring-petclinic --detect.project.version=1.0.0 --blackduck.url=https://10.107.85.166/ --blackduck.api.token=$SECRET 
+                '''
+              } 
+            }
+          }
+        }
+
+
+
+
 
         stage('Test') {
             steps {
