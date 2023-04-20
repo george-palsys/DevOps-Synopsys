@@ -12,7 +12,7 @@ pipeline {
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-analyze --dir /workspace/workspace/DevSecOps-Synopsys
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-manage-im --host 10.107.85.178 --mode streams --add --set name:DevOps-Synopsys -user $username -password $password || true
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-manage-im --host 10.107.85.178 --mode projects --add --set name:spring-petclinic --insert stream:DevOps-Synopsys  -user $username -password $password || true
-                    /opt/cov-analysis-linux64-2023.3.0/bin/cov-commit-defects --host 10.107.85.178 --stream DevSecOps --dir /workspace/workspace/DevSecOps-Synopsys --user $username --password $password
+                    /opt/cov-analysis-linux64-2023.3.0/bin/cov-commit-defects --host 10.107.85.178 --stream DevOps-Synopsys --dir /workspace/workspace/DevSecOps-Synopsys --user $username --password $password
                 '''
               }
             }
