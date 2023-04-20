@@ -6,6 +6,7 @@ pipeline {
                 dir("/workspace/workspace/DevOps-Synopsys"){
                 withCredentials([usernamePassword(credentialsId: 'coverity', passwordVariable: 'password', usernameVariable: 'username')])             {
                sh '''
+                    git checkout code
                     /opt/cov-analysis-linux-2023.3.0/bin/cov-configure --java
                     /opt/cov-analysis-linux-2023.3.0/bin/cov-build --dir /workspace/workspace/DevOps-Synopsys/spring-petclinic mvn clean package
                     /opt/cov-analysis-linux-2023.3.0/bin/cov-analyze --dir /workspace//workspace/DevOps-Synopsys/cov-analyze-workspace
