@@ -77,7 +77,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'ocp', passwordVariable: 'password', usernameVariable: 'username')]){
                sh '''
-                    oc login https://api.ocp4.redhat.poc:6443 -u $username -p $password
+                    /usr/local/bin/oc login https://api.ocp4.redhat.poc:6443 -u $username -p $password
                 '''
               }
             }
@@ -87,7 +87,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'argocd', passwordVariable: 'password', usernameVariable: 'username')]){
                sh '''
-                    argocd --insecure --grpc-web login openshift-gitops-server-openshift-gitops.apps.ocp4.redhat.poc --username $username --password $password
+                    /usr/local/bin/argocd --insecure --grpc-web login openshift-gitops-server-openshift-gitops.apps.ocp4.redhat.poc --username $username --password $password
                 '''
               }
             }
@@ -95,15 +95,15 @@ pipeline {
         stage('Create spring-petclinic on ocp') { 
             steps {
                  sh '''
-                      oc delete all --selector app=spring-petclinic -n spring-petclinic
-                      argocd app create spring-petclinic --repo https://github.com/george-palsys/DevOps-Synopsys.git --path ArgoCD --dest-server https://kubernetes.default.svc --dest-namespace spring-petclinic --upsert 
+                      /usr/local/bin/oc delete all --selector app=spring-petclinic -n spring-petclinic
+                      /usr/local/bin/argocd app create spring-petclinic --repo https://github.com/george-palsys/DevOps-Synopsys.git --path ArgoCD --dest-server https://kubernetes.default.svc --dest-namespace spring-petclinic --upsert 
                  '''
                 }
             }
 			
         stage("synsc spring-petclinic") {
             steps {
-                sh 'argocd app sync spring-petclinic'  
+                sh '/usr/local/bin/argocd app sync spring-petclinic'  
             }
             }
 
