@@ -96,7 +96,7 @@ pipeline {
             steps {
                  sh '''
                       /usr/local/bin/oc delete all --selector app=spring-petclinic -n spring-petclinic
-                      /usr/local/bin/argocd app create spring-petclinic --repo https://github.com/george-palsys/DevOps-Synopsys.git --path ArgoCD --dest-server https://kubernetes.default.svc --dest-namespace spring-petclinic --upsert 
+                      /usr/local/bin/argocd app create spring-petclinic --repo https://github.com/george-palsys/DevOps-Synopsys.git --revision manifest --path ArgoCD --dest-server https://kubernetes.default.svc --dest-namespace spring-petclinic --upsert 
                  '''
                 }
             }
