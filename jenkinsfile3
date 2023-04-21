@@ -73,6 +73,16 @@ pipeline {
             }
          }
 
+        stage ('login ocp') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'ocp', passwordVariable: 'password', usernameVariable: 'username')]){
+               sh '''
+                    oc login https://api.ocp4.redhat.poc:6443 -u $username -p $password
+                '''
+              }
+            }
+        }
+
         stage ('login argocd') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'argocd', passwordVariable: 'password', usernameVariable: 'username')]){
