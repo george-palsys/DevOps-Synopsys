@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: spring-petclinic
+  name: spring-petclinic-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-petclinic
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: spring-petclinic
+    spec:
+      containers:
+      - image: quay.ocp4.redhat.poc:8443/quayadmin/jboss-spring
+        name: spring-petclinic
+

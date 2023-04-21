@@ -73,5 +73,29 @@ pipeline {
             }
          }
 
+        stage ('login argocd') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'argocd', passwordVariable: 'password', usernameVariable: 'username')]){
+               sh '''
+                    argocd --insecure --grpc-web login openshift-gitops-server-openshift-gitops.apps.ocp4.redhat.poc --username $username --password $password
+                '''
+              }
+            }
+        }
+        stage('Create spring-petclinic on ocp') { 
+            steps {
+                 sh '''
+                      oc delete all --selector app=spring-petclinic -n spring-petclinic
+                      argocd app create spring-petclinic --repo https://github.com/george-palsys/DevOps-Synopsys.git --path ArgoCD --dest-server https://kubernetes.default.svc --dest-namespace spring-petclinic --upsert 
+                 '''
+                }
+            }
+			
+        stage("synsc spring-petclinic") {
+            steps {
+                sh 'argocd app sync spring-petclinic'  
+            }
+            }
+
 	}
 }

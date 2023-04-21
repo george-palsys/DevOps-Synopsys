@@ -1,0 +1,13 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: spring-petclinic-route
+  namespace: spring-petclinic
+  labels: {}
+spec:
+  to:
+    kind: Service
+    name: spring-petclinic-service
+  tls: null
+  port:
+    targetPort: 8080
