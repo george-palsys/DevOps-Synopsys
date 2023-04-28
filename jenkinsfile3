@@ -14,6 +14,13 @@ pipeline {
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-manage-im --host 10.107.85.178 --mode projects --add --set name:spring-petclinic --insert stream:DevOps-Synopsys  -user $username -password $password || true
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-commit-defects --host 10.107.85.178 --stream DevOps-Synopsys --dir /workspace/workspace/DevSecOps-Synopsys --user $username --password $password
                 '''
+              script {
+                def response = sh(
+                  script: 'curl -H "Content-Type: application/json" -X POST -d \'{"apiKey": "' + secret-token:UOcxxLwaXAJCU5nMj-0ytYhedKwObjRq8e8WFMt9 + '", "connectorName": "Coverity Connector"}\' http://10.107.85.162//api/v4/connectors/start',
+                  returnStdout: true
+                  )
+                  echo response
+                }
               }
             }
           }
