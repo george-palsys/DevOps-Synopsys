@@ -16,7 +16,7 @@ pipeline {
                 '''
               script {
                 def response = sh(
-                  script: 'curl -H "Content-Type: application/json" -X POST -d \'{"apiKey": "' + "secret-token:UOcxxLwaXAJCU5nMj-0ytYhedKwObjRq8e8WFMt9" + '", "connectorName": "Coverity Connector"}\' http://10.107.85.162//api/v4/connectors/start',
+                  script: 'curl -H "Content-Type: application/json" -X POST -d \'{"apiKey": "' + "secret-token:UOcxxLwaXAJCU5nMj-0ytYhedKwObjRq8e8WFMt9" + '", "connectorName": "Coverity Connector"}\' http://10.107.85.162/api/v4/connectors/start',
                   returnStdout: true
                   )
                   echo response
