@@ -13,14 +13,8 @@ pipeline {
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-manage-im --host 10.107.85.178 --mode streams --add --set name:DevOps-Synopsys -user $username -password $password || true
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-manage-im --host 10.107.85.178 --mode projects --add --set name:spring-petclinic --insert stream:DevOps-Synopsys  -user $username -password $password || true
                     /opt/cov-analysis-linux64-2023.3.0/bin/cov-commit-defects --host 10.107.85.178 --stream DevOps-Synopsys --dir /workspace/workspace/DevSecOps-Synopsys --user $username --password $password
+                    curl -H "API-Key: api-key:cbMVPoTNX8D031A3cokTap-tJlyFSoywDLfcTFpJ" -X 'POST' 'http://10.107.85.162/codedx/api/tool-connector-config/entries/4/9/analysis' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"branch": "main"}'
                 '''
-              script {
-                def response = sh(
-                  script: 'curl -H "API-Key: api-key:cbMVPoTNX8D031A3cokTap-tJlyFSoywDLfcTFpJ" -X 'POST' 'http://10.107.85.162/codedx/api/tool-connector-config/entries/4/9/analysis' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"branch": "main"}'',
-                  returnStdout: true
-                  )
-                  echo response
-                }
               }
             }
           }
@@ -32,14 +26,8 @@ pipeline {
                 sh '''
                     mvn -N io.takari:maven:wrapper
                     java -jar /opt/BlackDuck/synopsys-detect-8.8.0.jar --detect.project.name=spring-petclinic --detect.project.version=1.0.0 --blackduck.url=https://webserver/ --blackduck.api.token=$SECRET 
+                    curl -H "API-Key: api-key:cbMVPoTNX8D031A3cokTap-tJlyFSoywDLfcTFpJ" -X 'POST' 'http://10.107.85.162/codedx/api/tool-connector-config/entries/4/11/analysis' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"branch": "main"}'
                 '''
-              script {
-                def response = sh(
-                  script: 'curl -H "API-Key: api-key:cbMVPoTNX8D031A3cokTap-tJlyFSoywDLfcTFpJ" -X 'POST' 'http://10.107.85.162/codedx/api/tool-connector-config/entries/4/11/analysis' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"branch": "main"}'',
-                  returnStdout: true
-                  )
-                  echo response
-                }
               } 
             }
           }
