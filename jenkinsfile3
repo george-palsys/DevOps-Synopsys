@@ -16,7 +16,7 @@ pipeline {
                 '''
               script {
                 def response = sh(
-                  script: 'curl-H "API-Key: api-key:cbMVPoTNX8D031A3cokTap-tJlyFSoywDLfcTFpJ" -X 'POST' 'http://10.107.85.162/codedx/api/tool-connector-config/entries/4/9/analysis' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"branch": "main"}'',
+                  script: 'curl -H "API-Key: api-key:cbMVPoTNX8D031A3cokTap-tJlyFSoywDLfcTFpJ" -X 'POST' 'http://10.107.85.162/codedx/api/tool-connector-config/entries/4/9/analysis' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"branch": "main"}'',
                   returnStdout: true
                   )
                   echo response
@@ -35,7 +35,7 @@ pipeline {
                 '''
               script {
                 def response = sh(
-                  script: 'curl-H "API-Key: api-key:cbMVPoTNX8D031A3cokTap-tJlyFSoywDLfcTFpJ" -X 'POST' 'http://10.107.85.162/codedx/api/tool-connector-config/entries/4/11/analysis' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"branch": "main"}'',
+                  script: 'curl -H "API-Key: api-key:cbMVPoTNX8D031A3cokTap-tJlyFSoywDLfcTFpJ" -X 'POST' 'http://10.107.85.162/codedx/api/tool-connector-config/entries/4/11/analysis' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"branch": "main"}'',
                   returnStdout: true
                   )
                   echo response
