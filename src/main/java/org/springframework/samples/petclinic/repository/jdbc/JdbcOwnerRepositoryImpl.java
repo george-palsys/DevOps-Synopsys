@@ -127,12 +127,7 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
         BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(owner);
         if (owner.isNew()) {
             Number newKey = this.insertOwner.executeAndReturnKey(parameterSource);
-            if (newKey != null) {
-                owner.setId(newKey.intValue());
-            } else {
-                // Handle the case when newKey is null, e.g., throw an exception or log an error message.
-                throw new RuntimeException("Failed to insert new owner, newKey is null.");
-            }
+            owner.setId(newKey.intValue());
         } else {
             this.namedParameterJdbcTemplate.update(
                 "UPDATE owners SET first_name=:firstName, last_name=:lastName, address=:address, " +
