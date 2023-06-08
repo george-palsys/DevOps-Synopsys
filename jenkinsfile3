@@ -35,7 +35,13 @@ pipeline {
 
         stage('Notify') {
             steps {
-                mail body: 'The Security Scan are complete. Please confirm to proceed with Deployment.',
+                mail body:"""STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+                 Check console output at '${env.BUILD_URL}input/'
+                 Aborting build with this link: '${env.BUILD_URL}input/testid/abort'
+                 Proceed build with this link: '${env.BUILD_URL}input/testid/proceedEmpty'""",
+                 recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+
+                 'The Security Scan are complete. Please confirm to proceed with Deployment.',
                     subject: 'Confirmation Required',
                     to: 'georgechiu@palsys.demo.com.tw'
                 input message: 'Confirm to proceed with Deployment?', ok: 'Proceed'
