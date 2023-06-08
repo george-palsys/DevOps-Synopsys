@@ -33,6 +33,15 @@ pipeline {
           }
         }
 
+        stage('Notify') {
+            steps {
+                mail body: 'The Security Scan are complete. Please confirm to proceed with Deployment.',
+                    subject: 'Confirmation Required',
+                    to: 'georgechiu@palsys.com.tw'
+                input message: 'Confirm to proceed with Deployment?', ok: 'Proceed'
+            }
+        }
+
         stage("Publish to Nexus Repository Manager") {
             steps {
                 dir("/workspace/workspace/DevSecOps-Synopsys"){
