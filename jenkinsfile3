@@ -37,7 +37,7 @@ pipeline {
             steps {
                 mail body: 'The Security Scan are complete. Please confirm to proceed with Deployment.',
                     subject: 'Confirmation Required',
-                    to: 'georgechiu@palsys.com.tw'
+                    to: 'georgechiu@palsys.demo.com.tw'
                 input message: 'Confirm to proceed with Deployment?', ok: 'Proceed'
             }
         }
