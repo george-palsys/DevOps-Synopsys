@@ -37,7 +37,7 @@ pipeline {
             steps {
                 mail body:'The Security Scan are complete. Please confirm to proceed with Deployment.',
                     subject: 'Confirmation Required',
-                    to: 'georgechiu@palsys.demo.com.tw'
+                    to: 'approver@palsys.demo.com.tw'
                 input message: 'Confirm to proceed with Deployment?', ok: 'Proceed'
             }
         }
@@ -117,6 +117,14 @@ pipeline {
                 sh '/usr/local/bin/argocd app sync spring-petclinic'  
             }
             }
+
+        stage('Notify') {
+            steps {
+                mail body:'The Pipeline are complete. Please confirm .',
+                    subject: 'Deploy Successful',
+                    to: 'georgechiu@palsys.demo.com.tw'
+            }
+        }
 
 	}
 }
