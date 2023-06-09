@@ -33,7 +33,7 @@ pipeline {
           }
         }
 
-        stage('Notify') {
+        stage('Security Notify') {
             steps {
                 mail body:'The Security Scan are complete. Please confirm to proceed with Deployment.',
                     subject: 'Confirmation Required',
@@ -118,7 +118,7 @@ pipeline {
             }
             }
 
-        stage('Notify') {
+        stage('Pipeline Notify') {
             steps {
                 mail body:'The Pipeline are complete. Please confirm .',
                     subject: 'Deploy Successful',
